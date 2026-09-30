@@ -76,6 +76,13 @@
 				</exclusions>
 			</dependency>
 
+			<!-- Inherited from the com.google.guava:guava dependency -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>failureaccess</artifactId>
+				<version>1.0.3</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-bom</artifactId>
