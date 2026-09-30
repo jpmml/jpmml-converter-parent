@@ -37,7 +37,7 @@
 
 	<properties>
 		<guava.version>33.7.1-jre</guava.version>
-		<jcommander.version>1.85</jcommander.version>
+		<jcommander.version>2.0</jcommander.version>
 		<slf4j.version>2.0.20</slf4j.version>
 		<github-release.classifier>executable</github-release.classifier>
 		<project.build.outputTimestamp>2026-09-30T20:40:00Z</project.build.outputTimestamp>
