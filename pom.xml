@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.jpmml</groupId>
+		<artifactId>jpmml-parent</artifactId>
+		<version>1.0.22</version>
+	</parent>
+
+	<groupId>org.jpmml</groupId>
+	<artifactId>jpmml-converter-parent</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>JPMML-Converter-Parent</name>
+	<description>A parent Apache Maven Project Object Model (POM) for the JPMML-Converter product vertical</description>
+	<url>https://github.com/jpmml/jpmml-converter-parent</url>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License (AGPL) version 3.0</name>
+			<url>http://www.gnu.org/licenses/agpl-3.0.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git@github.com:jpmml/jpmml-converter-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:jpmml/jpmml-converter-parent.git</developerConnection>
+		<url>https://github.com/jpmml/jpmml-converter-parent</url>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/jpmml/jpmml-converter-parent/issues</url>
+	</issueManagement>
+
+	<properties>
+		<guava.version>33.7.1-jre</guava.version>
+		<jcommander.version>1.85</jcommander.version>
+		<slf4j.version>2.0.20</slf4j.version>
+		<github-release.classifier>executable</github-release.classifier>
+		<project.build.outputTimestamp>2026-09-30T20:40:00Z</project.build.outputTimestamp>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jcommander</groupId>
+				<artifactId>jcommander</artifactId>
+				<version>${jcommander.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>*</groupId>
+						<artifactId>*</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-bom</artifactId>
+				<version>${slf4j.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>de.jutzig</groupId>
+					<artifactId>github-release-plugin</artifactId>
+					<version>1.2.0</version>
+					<executions>
+						<execution>
+							<id>default-cli</id>
+							<configuration>
+								<artifact>${project.build.directory}/${project.artifactId}-${github-release.classifier}-${project.version}.${project.packaging}</artifact>
+								<description>${project.url}</description>
+								<releaseName>${project.version}</releaseName>
+								<tag>${project.version}</tag>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>central-release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>flatten-maven-plugin</artifactId>
+						<inherited>false</inherited>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
